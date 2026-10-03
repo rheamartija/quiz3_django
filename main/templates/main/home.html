@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSIT Student Directory</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef6fc; 
+            color: #2c3e50;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #d0e3f4;
+            box-shadow: 0 8px 20px rgba(0, 119, 182, 0.08);
+        }
+        header {
+            margin-bottom: 25px;
+            border-bottom: 3px solid #0096c7;
+            padding-bottom: 12px;
+        }
+        h1 {
+            color: #0077b6; 
+            font-size: 26px;
+            font-weight: 700;
+        }
+        p.subtitle {
+            color: #588baf;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #caf0f8;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+        th {
+            background-color: #0096c7; 
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.8px;
+        }
+        tr:nth-child(even) {
+            background-color: #f4f9fd; 
+        }
+        tr:hover {
+            background-color: #e0f2fe; 
+            transition: background 0.2s ease-in-out;
+        }
+        td {
+            border-bottom: 1px solid #e2f1f8;
+            font-size: 15px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .empty-msg {
+            padding: 20px 0;
+            color: #6c8fa2;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BSIT Student Directory</h1>
+            <p class="subtitle">Students enrolled in the Bachelor of Science in Information Technology</p>
+        </header>
+
+        {% if students %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{{ student.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty-msg">No BSIT students currently registered in the database.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
